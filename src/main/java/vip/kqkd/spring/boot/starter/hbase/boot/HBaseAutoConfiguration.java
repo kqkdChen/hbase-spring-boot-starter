@@ -28,9 +28,9 @@ public class HBaseAutoConfiguration {
     @Bean
     public HBaseTemplate hbaseTemplate() {
         Configuration conf = HBaseConfiguration.create();
-        // 是否连接Alihbase
         conf.set("hbase.zookeeper.quorum", hbaseProperties.getQuorum());
         conf.set("hbase.client.keyvalue.maxsize", hbaseProperties.getKeyValueSize());
+        // 是否连接Alihbase
         if (hbaseProperties.getEnableAlihbase()) {
             conf.set("hbase.client.username", hbaseProperties.getUsername());
             conf.set("hbase.client.password", hbaseProperties.getPassword());
