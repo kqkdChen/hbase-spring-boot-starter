@@ -1,9 +1,7 @@
 package vip.kqkd.spring.boot.starter.hbase.boot;
 
-import com.alibaba.hbase.client.AliHBaseUEConnection;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,7 +13,7 @@ import vip.kqkd.spring.boot.starter.hbase.api.HBaseTemplate;
  *
  * @author lichen
  * @version 0.0.1
- * @create 2020-03-08 19:26
+ * date 2020-03-08 19:26
  */
 @EnableConfigurationProperties(HBaseProperties.class)
 @ConditionalOnClass(HBaseTemplate.class)

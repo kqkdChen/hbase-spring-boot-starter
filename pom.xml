@@ -7,6 +7,7 @@
     <version>1.0.0.RELEASE</version>
     <url>https://github.com/kqkdChen/hbase-spring-boot-starter</url>
     <description>starter for hbase</description>
+    <name>hbase-spring-boot-starter</name>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -18,7 +19,6 @@
         <license>
             <name>The Apache Software License, Version 2.0</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
         </license>
     </licenses>
 
@@ -32,6 +32,10 @@
         <developer>
             <name>lichen</name>
             <organization>https://kqkd.vip</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
         </developer>
     </developers>
 
@@ -96,6 +100,55 @@
                     <target>${java.version}</target>
                     <showWarnings>true</showWarnings>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- GPG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

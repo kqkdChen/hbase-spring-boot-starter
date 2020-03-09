@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author lichen
  * @version 1.0.0
- * @create 2020-03-08 19:26
+ * date 2020-03-08 19:26
  */
 public class HBaseTemplate implements HbaseOperations {
 
