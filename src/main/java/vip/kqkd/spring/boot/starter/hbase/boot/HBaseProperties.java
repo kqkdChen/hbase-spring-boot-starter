@@ -17,8 +17,6 @@ public class HBaseProperties {
 
     private boolean enableAlihbase = false;
 
-    private String endpoint;
-
     private String username;
 
     private String password;
@@ -29,14 +27,6 @@ public class HBaseProperties {
 
     public void setEnableAlihbase(boolean enableAlihbase) {
         this.enableAlihbase = enableAlihbase;
-    }
-
-    public String getEndpoint() {
-        return endpoint;
-    }
-
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
     }
 
     public String getUsername() {
