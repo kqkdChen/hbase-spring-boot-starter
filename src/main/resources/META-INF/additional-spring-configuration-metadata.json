@@ -1,0 +1,35 @@
+{
+  "properties": [
+    {
+      "name": "spring.data.hbase.enableAlihbase",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "是否开启Alihbase连接支持."
+    },
+    {
+      "name": "spring.data.hbase.endpoint",
+      "type": "java.lang.String",
+      "description": "Alihbase公网连接地址."
+    },
+    {
+      "name": "spring.data.hbase.username",
+      "type": "java.lang.String",
+      "description": "Alihbase连接用户名."
+    },
+    {
+      "name": "spring.data.hbase.password",
+      "type": "java.lang.String",
+      "description": "Alihbase连接密码."
+    },
+    {
+      "name": "spring.data.hbase.quorum",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "spring.data.hbase.keyValueSize",
+      "type": "java.lang.String",
+      "description": "hbase获取某列最大值."
+    }
+
+  ]
+}
