@@ -29,14 +29,11 @@ public class HBaseAutoConfiguration {
     public HBaseTemplate hbaseTemplate() {
         Configuration conf = HBaseConfiguration.create();
         // 是否连接Alihbase
+        conf.set("hbase.zookeeper.quorum", hbaseProperties.getQuorum());
+        conf.set("hbase.client.keyvalue.maxsize", hbaseProperties.getKeyValueSize());
         if (hbaseProperties.getEnableAlihbase()) {
-            conf.set("hbase.client.connection.impl", AliHBaseUEConnection.class.getName());
-            conf.set("hbase.client.endpoint", hbaseProperties.getEndpoint());
             conf.set("hbase.client.username", hbaseProperties.getUsername());
             conf.set("hbase.client.password", hbaseProperties.getPassword());
-        } else {
-            conf.set("hbase.zookeeper.quorum", hbaseProperties.getQuorum());
-            conf.set("hbase.client.keyvalue.maxsize", hbaseProperties.getKeyValueSize());
         }
         return new HBaseTemplate(conf);
     }

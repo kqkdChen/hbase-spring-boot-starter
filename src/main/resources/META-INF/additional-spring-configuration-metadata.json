@@ -28,6 +28,7 @@
     {
       "name": "spring.data.hbase.keyValueSize",
       "type": "java.lang.String",
+      "defaultValue": "10485760",
       "description": "hbase获取某列最大值."
     }
 

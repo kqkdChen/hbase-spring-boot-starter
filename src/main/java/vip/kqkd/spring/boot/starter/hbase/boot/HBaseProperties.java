@@ -13,7 +13,7 @@ public class HBaseProperties {
 
     private String quorum;
 
-    private String keyValueSize;
+    private String keyValueSize = "10485760";
 
     private boolean enableAlihbase = false;
 
