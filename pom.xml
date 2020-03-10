@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>vip.kqkd</groupId>
     <artifactId>hbase-spring-boot-starter</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.1.RELEASE</version>
     <url>https://github.com/kqkdChen/hbase-spring-boot-starter</url>
     <description>starter for hbase</description>
     <name>hbase-spring-boot-starter</name>
