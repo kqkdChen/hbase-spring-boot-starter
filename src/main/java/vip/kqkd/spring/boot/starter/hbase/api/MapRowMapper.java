@@ -22,7 +22,7 @@ public class MapRowMapper implements RowMapper<Map<String, Object>> {
         if (result == null || result.size() == 0) {
             return null;
         }
-        Map<String, Object> map = new HashMap<>(20);
+        Map<String, Object> map = new HashMap<>(126);
         map.put("rowKey", Bytes.toString(result.getRow()));
         for (Cell cell : result.listCells()) {
             map.put(Bytes.toString(CellUtil.cloneQualifier(cell)), Bytes.toString(CellUtil.cloneValue(cell)));
