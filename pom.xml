@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>vip.kqkd</groupId>
     <artifactId>hbase-spring-boot-starter</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>${project.version}</version>
     <url>https://github.com/kqkdChen/hbase-spring-boot-starter</url>
     <description>starter for hbase</description>
     <name>hbase-spring-boot-starter</name>
@@ -44,6 +44,7 @@
         <java.version>1.8</java.version>
         <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
         <hbase.client.version>2.0.7</hbase.client.version>
+        <project.version>1.0.0.RELEASE</project.version>
     </properties>
 
     <dependencies>
@@ -90,6 +91,7 @@
 
     <build>
         <plugins>
+            <!-- compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -101,6 +103,7 @@
                     <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
+            <!-- source -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
