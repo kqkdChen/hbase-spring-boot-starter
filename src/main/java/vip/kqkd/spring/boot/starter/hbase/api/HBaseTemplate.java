@@ -126,6 +126,16 @@ public class HBaseTemplate implements HbaseOperations {
         });
     }
 
+    @Override
+    public Object[] batch(String tableName, List<Row> actions, Object[] results) {
+        try(Table table = connection.getTable(TableName.valueOf(tableName))) {
+            table.batch(actions, results);
+            return results;
+        } catch (Throwable throwable) {
+            throw new HbaseSystemException(throwable);
+        }
+    }
+
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

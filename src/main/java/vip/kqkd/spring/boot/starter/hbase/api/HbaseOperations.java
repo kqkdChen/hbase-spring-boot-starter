@@ -1,6 +1,7 @@
 package vip.kqkd.spring.boot.starter.hbase.api;
 
 import org.apache.hadoop.hbase.client.Mutation;
+import org.apache.hadoop.hbase.client.Row;
 import org.apache.hadoop.hbase.client.Scan;
 
 import java.util.List;
@@ -124,5 +125,13 @@ public interface HbaseOperations {
      * @param mutations
      */
     void putOrDeletes(String tableName, List<Mutation> mutations);
+
+    /**
+     *  batch operate
+     * @param tableName
+     * @param actions
+     * @param results
+     */
+    Object[] batch(String tableName, List<Row> actions, Object[] results);
 
 }
