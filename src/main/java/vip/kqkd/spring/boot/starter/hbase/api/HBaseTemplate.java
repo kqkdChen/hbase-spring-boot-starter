@@ -40,23 +40,23 @@ public class HBaseTemplate implements HbaseOperations {
     }
 
     @Override
-    public <T> List<T> find(String tableName, String family, final RowMapper<T> action) {
+    public <T> List<T> find(String tableName, String family, final Class<? extends RowMapper<T>> mapperCls) {
         Scan scan = new Scan();
         scan.setCaching(5000);
         scan.addFamily(Bytes.toBytes(family));
-        return this.find(tableName, scan, action);
+        return this.find(tableName, scan, mapperCls);
     }
 
     @Override
-    public <T> List<T> find(String tableName, String family, String qualifier, final RowMapper<T> action) {
+    public <T> List<T> find(String tableName, String family, String qualifier, final Class<? extends RowMapper<T>> mapperCls) {
         Scan scan = new Scan();
         scan.setCaching(5000);
         scan.addColumn(Bytes.toBytes(family), Bytes.toBytes(qualifier));
-        return this.find(tableName, scan, action);
+        return this.find(tableName, scan, mapperCls);
     }
 
     @Override
-    public <T> List<T> find(String tableName, final Scan scan, final RowMapper<T> action) {
+    public <T> List<T> find(String tableName, final Scan scan, final Class<? extends RowMapper<T>> mapperCls) {
         return this.execute(tableName, table -> {
             int caching = scan.getCaching();
             // 如果caching未设置(默认是1)，将默认配置成5000
@@ -66,6 +66,7 @@ public class HBaseTemplate implements HbaseOperations {
             try (ResultScanner scanner = table.getScanner(scan)) {
                 List<T> rs = new ArrayList<>();
                 int rowNum = 0;
+                RowMapper<T> action = mapperCls.newInstance();
                 for (Result result : scanner) {
                     rs.add(action.mapRow(result, rowNum++));
                 }
@@ -75,17 +76,17 @@ public class HBaseTemplate implements HbaseOperations {
     }
 
     @Override
-    public <T> T get(String tableName, String rowName, final RowMapper<T> mapper) {
-        return this.get(tableName, rowName, null, null, mapper);
+    public <T> T get(String tableName, String rowName, final Class<? extends RowMapper<T>> mapperCls) {
+        return this.get(tableName, rowName, null, null, mapperCls);
     }
 
     @Override
-    public <T> T get(String tableName, String rowName, String familyName, final RowMapper<T> mapper) {
-        return this.get(tableName, rowName, familyName, null, mapper);
+    public <T> T get(String tableName, String rowName, String familyName, final Class<? extends RowMapper<T>> mapperCls) {
+        return this.get(tableName, rowName, familyName, null, mapperCls);
     }
 
     @Override
-    public <T> T get(String tableName, final String rowName, final String familyName, final String qualifier, final RowMapper<T> mapper) {
+    public <T> T get(String tableName, final String rowName, final String familyName, final String qualifier, final Class<? extends RowMapper<T>> mapperCls) {
         return this.execute(tableName, table -> {
             Get get = new Get(Bytes.toBytes(rowName));
             if (StringUtils.isNotBlank(familyName)) {
@@ -98,7 +99,8 @@ public class HBaseTemplate implements HbaseOperations {
                 }
             }
             Result result = table.get(get);
-            return mapper.mapRow(result, 0);
+            RowMapper<T> rowMapper = mapperCls.newInstance();
+            return rowMapper.mapRow(result, 0);
         });
     }
 

@@ -43,7 +43,7 @@ public interface HbaseOperations {
      * @param <T> action type
      * @return a list of objects mapping the scanned rows
      */
-    <T> List<T> find(String tableName, String family, final RowMapper<T> mapper);
+    <T> List<T> find(String tableName, String family, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * Scans the target table, using the given column family.
@@ -55,7 +55,7 @@ public interface HbaseOperations {
      * @param <T> action type
      * @return a list of objects mapping the scanned rows
      */
-    <T> List<T> find(String tableName, String family, String qualifier, final RowMapper<T> mapper);
+    <T> List<T> find(String tableName, String family, String qualifier, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * Scans the target table using the given {@link Scan} object. Suitable for maximum control over the scanning
@@ -67,18 +67,18 @@ public interface HbaseOperations {
      * @param <T> action type
      * @return a list of objects mapping the scanned rows
      */
-    <T> List<T> find(String tableName, final Scan scan, final RowMapper<T> mapper);
+    <T> List<T> find(String tableName, final Scan scan, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * Gets an individual row from the given table. The content is mapped by the given action.
      *
      * @param tableName target table
      * @param rowName row name
-     * @param mapper row mapper
+     * @param mapperCls row mapper
      * @param <T> mapper type
      * @return object mapping the target row
      */
-    <T> T get(String tableName, String rowName, final RowMapper<T> mapper);
+    <T> T get(String tableName, String rowName, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * Gets an individual row from the given table. The content is mapped by the given action.
@@ -86,11 +86,11 @@ public interface HbaseOperations {
      * @param tableName target table
      * @param rowName row name
      * @param familyName column family
-     * @param mapper row mapper
+     * @param mapperCls row mapper
      * @param <T> mapper type
      * @return object mapping the target row
      */
-    <T> T get(String tableName, String rowName, String familyName, final RowMapper<T> mapper);
+    <T> T get(String tableName, String rowName, String familyName, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * Gets an individual row from the given table. The content is mapped by the given action.
@@ -99,11 +99,11 @@ public interface HbaseOperations {
      * @param rowName row name
      * @param familyName family
      * @param qualifier column qualifier
-     * @param mapper row mapper
+     * @param mapperCls row mapper
      * @param <T> mapper type
      * @return object mapping the target row
      */
-    <T> T get(String tableName, final String rowName, final String familyName, final String qualifier, final RowMapper<T> mapper);
+    <T> T get(String tableName, final String rowName, final String familyName, final String qualifier, final Class<? extends RowMapper<T>> mapperCls);
 
     /**
      * 执行put update or delete
